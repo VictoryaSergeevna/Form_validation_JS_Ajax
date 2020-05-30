@@ -1,0 +1,177 @@
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Title of the document</title>
+  <style>
+  form{
+      width:450px;
+      height: 500px;
+      margin:auto;
+      background-color: antiquewhite;
+  }
+
+  p{
+      margin: 0;
+      padding: 0;
+      margin-left:60%;
+      visibility: hidden;
+      color:red;
+      font-weight: bold;
+      font-size: 17px;
+
+  }
+
+  b{
+      
+      margin: 10px;
+      font-weight: bold;
+      font-size: 18px;
+      font-family: sans-serif;
+  }
+  .st_input{
+      width:95%;
+      height: 35px;
+      margin: 10px;
+      box-sizing: border-box;
+      border-radius: 4px;
+
+  }
+  h1{
+      text-align: center;
+  }
+ 
+  div{
+      margin: 10px;
+  }
+
+  .st_but{
+      width:92%;
+      height:40px;
+      font-weight: bold;
+      border-radius: 4px;
+      margin: 16px; 
+      font-size: 20;
+  }
+  </style>
+  </head>
+
+    <body id='b' onload="load()">
+    <div id='regDiv'></div>
+
+        <script>
+      function load(){        
+        b.style.height=window.innerHeight+'px'; b.style.display='flex';
+        checkReg();
+        }
+        
+     function checkReg(){
+    var x = document.cookie;
+    var rd = document.getElementById("regDiv");
+    var s = x.split('; ');
+    var cookieObject = {};
+    var c;
+    
+    for(var i=0; i < s.length; i++){
+    c = s[i].split('=');
+    cookieObject[c[0]] = c[1];
+    }
+    
+    if('email' in cookieObject){
+    rd.innerHTML = "Hello, "+cookieObject['email'] + `<button onclick='delClick()'>Exit</button><br>
+    <form onsubmit = "return checkForm() target="_self"">      
+          <h1>Registration</h1>
+           <div>
+            <b>Email:</b>
+            <p id="pag1">Wrong email address</p>
+          <input type="email" name="email" id="email" class="st_input" required>
+          <b>Password:</b>
+          <input type="password" name="password" id="password" class="st_input" required>
+          <b>Repeat:</b>
+          <p id="pag2">Passwords must match</p>
+          <input type="password" name="repeat_pas" id="rep_pas" class="st_input" required>
+          </div>
+          <input type="submit" value="Sing Up" name="sing_up" id="sing" class="st_but" required>
+        </form>`;
+    }
+    
+    else
+    {
+    rd.innerHTML =
+    `<form onsubmit = "return checkForm()" target="_self">      
+          <h1>Registration</h1>
+           <div>
+            <b>Email:</b>
+            <p id="pag1">Wrong email address</p>
+          <input type="email" name="email" id="email" class="st_input" required>
+          <b>Password:</b>
+          <input type="password" name="password" id="password" class="st_input" required>
+          <b>Repeat:</b>
+          <p id="pag2">Passwords must match</p>
+          <input type="password" name="repeat_pas" id="rep_pas" class="st_input" required>
+          </div>
+          <input type="submit" value="Sing Up" name="sing_up" id="sing" class="st_but" required>
+        </form>`;
+
+    }
+    }
+    
+    
+     function checkForm(){
+
+  var eMail = document.getElementById("email").value;
+  var te = /^[A-z]{3,}([-._])*[A-z]{3,}@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ ;
+  if(! te.test(eMail) ){
+  alert("e-Mail is incorrect");
+  pag1.style.visibility="visible";
+  return false;
+  }
+  var p1 = document.getElementById("password").value;
+  if(!/(\w+){6,}/.test(p1)){
+  alert("Password has no 6 symbols");
+  return false;
+     }
+  if(! /\d/.test(p1)){
+  alert("Password has no digit");
+  return false;
+  } if(! /[A-Z]/.test(p1)){
+  alert("Password has no big letters");
+  return false;
+  }
+  if(! /[a-z]/.test(p1)){
+  alert("Password has no small letters");
+  return false;
+  }
+  var p2 = document.getElementById("rep_pas").value;
+  if(p1 != p2){
+  alert("Passwords mismatch");
+  pag2.style.visibility="visible";
+  return false;
+  } 
+  regClick();
+  }
+  
+      function regClick(){
+    var inputEmail = document.getElementById("email");
+    var mail = inputEmail.value;
+    var inputPas = document.getElementById("password");
+    var pas = inputPas.value;
+    var expDate = new Date();
+    expDate.setTime((new Date).getTime() + 60*1000);  document.cookie="email="+mail+";expires="+expDate.toGMTString()+";path=/";    
+    document.cookie="password"+pas+";expires="+expDate.toGMTString()+";path=/";  
+   checkReg();
+    }
+    
+     function delClick(){
+      var inputEmail = document.getElementById("email");
+      var mail = inputEmail.value;
+      var inputPas = document.getElementById("password");
+    var pas = inputPas.value;
+      var expDate = new Date();
+      expDate.setTime((new Date).getTime() - 60*1000);           document.cookie="email="+mail+";expires="+expDate.toGMTString()+";path=/";    
+    document.cookie="password"+pas+";expires="+expDate.toGMTString()+";path=/";  
+     checkReg();
+      }  
+           </script>
+    </body>
+
+  </html>
