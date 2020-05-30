@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main form</title>
+     <link rel="stylesheet" href="style_2.css">
+</head>
+<body>
+<form method='GET' id = "regForm" onsubmit = "return checkForm_1()">
+  <a href="#">exit</a>
+  <hr>
+  <br>
+  <h2>User Info</h2>
+  <div id="st_div1">
+      <b>First Name:</b>
+      <br>
+      <input type="text" name="first_name" id="first_name" required>
+      <br>
+      <b>Year of birth</b>
+      <br>
+        <input type="text" name="year" id="year" required>
+        <br>
+      <b>Phone number</b>
+      <br>
+        <input type="text" name="phone" id="phone" required>
+        <br>               
+  </div>
+  <div id="st_div2">
+     <b>Last Name:</b>
+      <br>
+      <input type="text" name="last_name" id="last_name" required>
+      <br>
+      <b>Gender:</b>
+      <br>
+       <select name="gender" id="gender">
+           <option>male</option>
+           <option>female</option>
+       </select>
+        <br>
+        <b>Scype</b>
+      <br>
+        <input type="text" name="scype" id="scype" required>
+      <br>            
+         
+  </div>
+   <input type="submit" value="Sing Up" name="sing_up" id="sing" class="st_but" required>  <br> 
+   </form>  
+<script>
+function checkForm_1(){    
+var f = document.getElementById("first_name").value;
+var t1 = /^[A-Z][a-z]*(-[A-Z][a-z]*)*$/;
+if(!t1.test(f)){
+alert("First name is incorrect");
+return false;
+}
+var l = document.getElementById("last_name").value;
+var t2=/{1,20}\w/;
+if(!t2.test(l)){
+alert("Last name is incorrect");
+return false;
+}
+var y = document.getElementById("year").value;
+if(y<1990){
+alert("Year must be digits");
+return false;
+}
+ var ph = document.getElementById("phone").value;
+if(! /[()-][0-9]{10,12}/.test(ph)){
+alert("Phone must be digits");
+return false;
+} 
+  var sk = document.getElementById("scype").value;
+if(! /\w+[-.]*/.test(sk)){
+alert("Phone must be digits");
+return false;
+}   
+    
+}
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+body{
+    display: flex;
+    margin: 30px;
+}
+
+
+form{
+    width:450px;
+    height: 450px;
+    margin:auto;
+    background-color: antiquewhite;
+}
+
+p{
+    margin: 0;
+    padding: 0;
+    margin-left:60%;
+    visibility: hidden;
+    color:red;
+    font-weight: bold;
+    font-size: 17px;
+   
+}
+
+b{
+    float:left;
+    margin: 10px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: sans-serif;
+}
+.st_input{
+    width:95%;
+    height: 35px;
+    margin: 10px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    
+}
+h1{
+    text-align: center;
+}
+
+div{
+    margin: 10px;
+}
+
+.st_but{
+    width:92%;
+    height:40px;
+    font-weight: bold;
+    border-radius: 4px;
+    margin: 16px; 
+    font-size: 20;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main form</title>
+     <link rel="stylesheet" href="style_1.css">
+</head>
+<body>
+   
+    <form method='GET' id = "regForm" onsubmit = "return checkForm()">
+      <h1>Registration</h1>
+       <div>
+        <b>Email:</b>
+        <p id="pag1">Wrong email address</p>
+      <input type="email" name="email" id="email" class="st_input" required>
+      <b>Password:</b>
+      <input type="password" name="password" id="pas" class="st_input" required>
+      <b>Repeat:</b>
+      <p id="pag2">Passwords must match</p>
+      <input type="password" name="repeat_pas" id="rep_pas" class="st_input" required>
+      </div>
+      <input type="submit" value="Sing Up" name="sing_up" id="sing" class="st_but" required>
+    </form>
+    <script>
+        function checkForm(){
+         
+var eMail = document.getElementById("email").value;
+var te = /^[A-z]{3,}([-._])*[A-z]{3,}@\w+([-.]\w+)*\.\w+([-.]\w+)*$/ ;
+if(! te.test(eMail) ){
+alert("e-Mail is incorrect");
+pag1.style.visibility="visible";
+return false;
+}
+var p1 = document.getElementById("pas").value;
+if(!/(\w+){6,}/.test(p1)){
+alert("Password has no 6 symbols");
+return false;
+   }
+if(! /\d/.test(p1)){
+alert("Password has no digit");
+return false;
+} if(! /[A-Z]/.test(p1)){
+alert("Password has no big letters");
+return false;
+}
+if(! /[a-z]/.test(p1)){
+alert("Password has no small letters");
+return false;
+}
+var p2 = document.getElementById("rep_pas").value;
+if(p1 != p2){
+alert("Passwords mismatch");
+pag2.style.visibility="visible";
+return false;
+}  
+  window.open("secondForm.html");          
+        }
+        
+    </script>
+</body>
+</html>
